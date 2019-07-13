@@ -81,7 +81,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Modern PHP Frameworks
+                </div>
+                <div class="title m-b-md">
+                   We like Laravel
                 </div>
 
                 <div class="links">
