@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/admin', 'AdminController@index')->middleware('checkadmin');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
