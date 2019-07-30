@@ -26,8 +26,9 @@ class CheckAdmin
 
             }
         }
-        // return  response('Not Auth',401)->header('Content-Type', 'text/plain');
-        return abort('401', 'Not Authorised');
+
+         abort('401', 'Not Authorised');
     }
 }
+
 
