@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+
 
         <!-- Styles -->
         <style>
@@ -20,9 +22,7 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
-            }
+
 
             .flex-center {
                 align-items: center;
@@ -80,13 +80,23 @@
             @endif
 
             <div class="content">
+                <div>
+                    {{ Form::open(array('url' => '/')) }}
+                    {{Form::label('sel1', 'Введите название')}}
+                    {{Form::select('sel1',[],null,['id' => 'sel1','class' => 'js-example-data-array ',
+                    'style' => 'width:50%'])}}
+
+                    {{ Form::submit('Искать') }}
+
+
+                    {{ Form::close() }}
+                </div>
                 <div class="title m-b-md">
                     Modern PHP Frameworks
                 </div>
                 <div class="title m-b-md">
                    We like Laravel
                 </div>
-
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -96,7 +106,29 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-            </div>
+                <div class="title m-b-md">
+                Latest News
+                </div>
+
+                    @foreach($articles as $article)
+                     <div>  <h2>{{ $article['title'] }}</h2>
+                        <h3>{{ $article['subtitle'] }}</h3>
+                         <img src="{{ '/images/' . $article['image']}}" alt="yii" class="img-thumbnail ">
+                         <p>{{$article['text']}}</p>
+                     </div>
+
+                    @endforeach
+
+
+                <div><h3>Today is  {{  date('d-m-Y') }}</h3></div>
         </div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+        <script src="/js/select2search.js"></script>
     </body>
 </html>
+

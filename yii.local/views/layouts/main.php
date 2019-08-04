@@ -4,9 +4,12 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\widgets\ActiveForm;
+use yii\widgets\ActiveField;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
@@ -22,10 +25,13 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+
+
 </head>
 <body>
-<?php $this->beginBody() ?>
 
+<?php $this->beginBody() ?>
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -62,20 +68,42 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?= Alert::widget() ?>
+
+
+        <?php
+        $model = new \app\models\Towns();
+        $form = ActiveForm::begin([
+            'id' => 'search-form',
+            'options' => ['class' => 'form-horizontal'],
+        ]) ?>
+
+        <?= $form->field($model, 'name')->dropDownList([], ['class' => 'js-example-data-array',
+            'style' => 'width: 50%'])
+            ->hint('Введите ключевые слова')->label('Поиск по сайту'); ?>
+
+        <div class="form-group">
+            <div class="col-lg-offset-1 col-lg-11">
+                <?= Html::submitButton('Искать', ['class' => 'btn btn-primary']) ?>
+            </div>
+        </div>
+        <?php ActiveForm::end() ?>
+
         <?= $content ?>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Today is <?= date('d-m-Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
+
     </div>
 </footer>
 
 <?php $this->endBody() ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+<script src="/assets/select2search.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -14,8 +14,10 @@
 Route::get('/admin', 'AdminController@index')->middleware('checkadmin');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@showLatestNews');
+
+Route::get('test','TestController@index');
+
+
 
 

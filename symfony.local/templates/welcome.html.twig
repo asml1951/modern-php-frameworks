@@ -1,0 +1,23 @@
+{% extends 'base.html.twig'%}
+
+{% block title %} Latest News
+{% endblock %}
+
+
+{% block content %}
+    {{ form(form) }}
+  <h1>Последние новости</h1>
+
+    {% for article in articles %}
+        <article>
+        <p><h2> {{ article.title }}</h2></p>
+        <p><h3> {{ article.subtitle }}</h3></p>
+        <img src="/images/{{ article.image }}">
+        <p>{{ article.text }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}
+
+{% block footer %}
+ <div>Сегодня {{ date }}</div>
+{% endblock %}

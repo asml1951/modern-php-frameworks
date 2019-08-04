@@ -1,12 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Wellcome!111{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Wellcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
-        {% block body %}111111{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+        {% block javascripts %}
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                    crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+            <script src="/js/select2search.js"></script>
+        {% endblock %}
+
     </body>
 </html>
+
+

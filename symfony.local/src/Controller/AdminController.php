@@ -17,7 +17,6 @@ class AdminController
      */
     public function showPanel()
     {
-        return new Response(
-            '<html><body><h1> Admin Panel.</h1></body></html>');
+        return new Response('<html><body><h1> Admin Panel.</h1></body></html>');
     }
 }

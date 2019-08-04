@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by : alex
- * Date: 29.07.2019
- * Time: 12:23
- */
 
 namespace App\EventListener;
-
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
