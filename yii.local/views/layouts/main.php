@@ -103,7 +103,7 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
-<script src="/assets/select2search.js"></script>
+<script src="/js/select2search.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>
