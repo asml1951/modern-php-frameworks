@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Article;
+use app\models\Author;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -15,45 +17,6 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-
-    public $news = [ 'article1' => ['title' => 'Новость 1',
-                                    'subtitle' => 'Краткое содержание новости #1',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк. ',
-                                     'image' => 'tree.jpg'],
-                     'article2' => ['title' => 'Новость 2',
-                                    'subtitle' => 'Краткое содержание новости #2',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк.',
-                                      'image' => 'boat.jpg'],
-                     'article3' => ['title' => 'Новость 3',
-                                    'subtitle' => 'Краткое содержание новости #3',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк.',
-                                     'image' => 'balloons.jpg'],
-                     'article4' => ['title' => 'Новость 4',
-                                    'subtitle' => 'Краткое содержание новости #4',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк.',
-                                    'image' => 'balloons.jpg'],
-                     'article5' => ['title' => 'Новость 5',
-                                    'subtitle' => 'Краткое содержание новости #5',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк.',
-                                    'image' => 'secretcave.jpg'],
-                     'article6' => ['title' => 'Новость 6',
-                                    'subtitle' => 'Краткое содержание новости #6',
-                                    'text' => 'На сайте Госавтоинспекции появился интерактивный раздел, в котором 
-                                    собрана информация о местах размещения средств фото- и видеофиксации нарушений
-                                     на дорогах, сообщила официальный представитель МВД Ирина Волк.',
-                                    'image' => 'pipe-sculpture.jpg'],
-        ];
-
     public function behaviors()
     {
         return [
@@ -100,7 +63,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index', ['articles' => array_slice($this->news, 0, 5, true)]);
+        $articles = Article::find()->where(['<=','id',5])->orderBy('id')->all();
+
+        return $this->render('index', ['articles' => $articles]
+                                            );
     }
 
     /**
@@ -168,6 +134,16 @@ class SiteController extends Controller
     public function actionSay($message = 'Привет!')
     {
 
+
+        $author = Author::findOne(['name' => 'А.С. Пушкин']);
+        var_dump($author);
+        $articles = $author->news;
+        var_dump($articles);
+
+
+
         return $this->render('say', ['message' => $message]);
     }
+
+
 }

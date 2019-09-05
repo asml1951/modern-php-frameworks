@@ -10,10 +10,10 @@
 
     {% for article in articles %}
         <article>
-        <p><h2> {{ article.title }}</h2></p>
+        <p><h2> {{ article.rubric }} : {{ article.title }}</h2></p>
+            <p> <h3> Автор: {{ article.author.name }} e-mail: {{ article.author.email }}</h3></p>
         <p><h3> {{ article.subtitle }}</h3></p>
-        <img src="/images/{{ article.image }}">
-        <p>{{ article.text }}</p>
+        <p>{{ article.content }}</p>
         </article>
     {% endfor %}
 {% endblock %}

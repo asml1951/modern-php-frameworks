@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by : alex
- * Date: 28.07.2019
- * Time: 11:21
- */
 
 namespace App\Controller;
 

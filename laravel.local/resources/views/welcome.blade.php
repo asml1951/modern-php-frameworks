@@ -85,10 +85,7 @@
                     {{Form::label('sel1', 'Введите название')}}
                     {{Form::select('sel1',[],null,['id' => 'sel1','class' => 'js-example-data-array ',
                     'style' => 'width:50%'])}}
-
                     {{ Form::submit('Искать') }}
-
-
                     {{ Form::close() }}
                 </div>
                 <div class="title m-b-md">
@@ -107,18 +104,16 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
                 <div class="title m-b-md">
-                Latest News
+                Последние новости
                 </div>
-
                     @foreach($articles as $article)
-                     <div>  <h2>{{ $article['title'] }}</h2>
+                     <div>
+                         <h2>{{ $article['rubric'] }}: {{ $article['title'] }}</h2>
+                         <h4> Автор: {{ $article->author['name'] }}</h4>
                         <h3>{{ $article['subtitle'] }}</h3>
-                         <img src="{{ '/images/' . $article['image']}}" alt="yii" class="img-thumbnail ">
-                         <p>{{$article['text']}}</p>
+                         <p>{{$article['content']}}</p>
                      </div>
-
                     @endforeach
-
 
                 <div><h3>Today is  {{  date('d-m-Y') }}</h3></div>
         </div>
