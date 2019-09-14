@@ -69,25 +69,6 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
 
-
-        <?php
-        $model = new \app\models\Towns();
-        $form = ActiveForm::begin([
-            'id' => 'search-form',
-            'options' => ['class' => 'form-horizontal'],
-        ]) ?>
-
-        <?= $form->field($model, 'name')->dropDownList([], ['class' => 'js-example-data-array',
-            'style' => 'width: 50%'])
-            ->hint('Введите ключевые слова')->label('Поиск по сайту'); ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Искать', ['class' => 'btn btn-primary']) ?>
-            </div>
-        </div>
-        <?php ActiveForm::end() ?>
-
         <?= $content ?>
     </div>
 </div>

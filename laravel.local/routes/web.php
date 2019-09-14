@@ -15,6 +15,7 @@ Route::get('/admin', 'AdminController@index')->middleware('checkadmin');
 
 
 Route::get('/', 'WelcomeController@showLatestNews');
+Route::get('/arch', 'ArchController@moveToArchive');
 
 Route::get('test','TestController@index');
 

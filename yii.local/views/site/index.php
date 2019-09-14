@@ -22,15 +22,22 @@ $this->title = 'My Yii Application';
     <div class="body-content">
         <div class="row">
         <?php foreach($articles as $article) { ?>
+            <article>
             <p class="col-lg-12">
                 <h2><?= $article['title'] ?> </h2>
-                <p><h3><?= 'Автор новости: ' . $article->author['name'] .
-                '  email автора: ' . $article->author['email'] ?></h3></p>
-                <img src="<?= '/images/' . $article['image'] ?>" alt="yii" class="img-thumbnail ">
-                <p><h4><?= $article['subtitle'] ?></h4></p>
+
+                <p><h4><?= $article->articlerubric['name'] ?></h4></p>
+                 <?php setlocale(LC_TIME,'ru_RU.UTF-8'); ?>
+                <p><h5>Дата публикации: <?= strftime(' %A %e %B %Y ', strtotime($article['published'])) ?></h5></p>
+                <?php if(!is_null($article['modified'])) {  ?>
+                <p><h5>Обновлено: <?= strftime(' %A %e %B %Y ', strtotime($article['modified'])) ?> </h5></p>
+                    <?php } ?>
                 <p><?= $article['content'] ?></p>
+
         <?php } ?>
+            </article>
         </div>
+
 
 
     </div>

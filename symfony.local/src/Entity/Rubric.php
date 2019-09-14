@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AuthorRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\RubricRepository")
  */
-class Author
+class Rubric
 {
     /**
      * @ORM\Id()
@@ -24,12 +24,7 @@ class Author
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="rubric")
      */
     private $articles;
 
@@ -55,18 +50,6 @@ class Author
         return $this;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Article[]
      */
@@ -79,7 +62,7 @@ class Author
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->setAuthorId($this);
+            $article->setRubric($this);
         }
 
         return $this;
@@ -90,8 +73,8 @@ class Author
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
             // set the owning side to null (unless already changed)
-            if ($article->getAuthorId() === $this) {
-                $article->setAuthorId(null);
+            if ($article->getRubric() === $this) {
+                $article->setRubric(null);
             }
         }
 

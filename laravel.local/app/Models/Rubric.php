@@ -7,13 +7,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Author extends Model
+class Rubric extends Model
 {
-    protected $table = 'authors';
+    protected $table = 'rubric';
+
+    public $timestamps = false;
 
     public function articles()
     {
-        return $this->hasMany('App\Models\Articles');
+        return $this->hasMany('App\Models\Article');
     }
 
 }

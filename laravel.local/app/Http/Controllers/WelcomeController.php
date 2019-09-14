@@ -9,14 +9,13 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Article;
-use App\Models\Author;
+use App\Models\Rubric;
 
 class WelcomeController extends Controller
 {
     public function showLatestNews()
     {
-        $news = Article::all()->take(5);
-
+        $news = Article::getLatestNews();
         return view('welcome', ['articles' => $news]);
 
     }

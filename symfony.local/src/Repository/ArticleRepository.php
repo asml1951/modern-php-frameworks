@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\DoctrineExtentions\MySql\DateDiff;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,18 +37,8 @@ class ArticleRepository extends ServiceEntityRepository
     }
     */
 
-    public function getFirstNews($n)
-    {
-        return $this->createQueryBuilder('a')
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults($n)
-            ->getQuery()
-            ->getResult();
-    }
 
-
-    /*
-    public function findOneBySomeField($value): ?Article
+  /*  public function findOneBySomeField($value): ?Article
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
@@ -55,6 +46,23 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    }  */
+
+    public function getLatestNews()
+    {
+        return $this->createQueryBuilder('a')
+            ->where('DATEDIFF(CURRENT_DATE(), a.published) < 7')
+            ->andWhere('a.archived IS NULL')
+            ->orderBy('a.rubric', 'ASC')
+            ->addOrderBy('a.published', 'DESC')
+            ->getQuery()->getResult();
     }
-    */
+
+    public function getByDateAndRubric(string $date, array $rubrics)
+    {
+        return $this->createQueryBuilder('a')
+             ->where('a.published < :date ')
+             ->setParameter('date', $date)
+             ->getQuery()->getResult();
+    }
 }

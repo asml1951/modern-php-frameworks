@@ -10,10 +10,12 @@
 
     {% for article in articles %}
         <article>
-        <p><h2> {{ article.rubric }} : {{ article.title }}</h2></p>
-            <p> <h3> Автор: {{ article.author.name }} e-mail: {{ article.author.email }}</h3></p>
-        <p><h3> {{ article.subtitle }}</h3></p>
-        <p>{{ article.content }}</p>
+        <p><h2> {{ article.rubric.name }} : {{ article.title }}</h2></p>
+            <p><h4>Опубликовано: {{ article.published.format('Y-m-d') }}</h4></p>
+            {% if  article.modified is not null %}
+            <p><h4>Изменено: {{ article.modified.format('Y-m-d') }}</h4></p>
+            {% endif %}
+            <p>{{ article.content }}</p>
         </article>
     {% endfor %}
 {% endblock %}

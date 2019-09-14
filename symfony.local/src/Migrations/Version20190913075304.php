@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190904082844 extends AbstractMigration
+final class Version20190913075304 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,8 +22,8 @@ final class Version20190904082844 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, author_id INT NOT NULL, rubric VARCHAR(300) NOT NULL, title VARCHAR(255) NOT NULL, subtitle VARCHAR(300) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME , arch TINYINT(1) NOT NULL, INDEX IDX_23A0E66F675F31B (author_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE article ADD CONSTRAINT FK_23A0E66F675F31B FOREIGN KEY (author_id) REFERENCES author (id)');
+        $this->addSql('CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, rubric_id INT NOT NULL, title VARCHAR(255) NOT NULL, published DATETIME NOT NULL, modified DATETIME DEFAULT NULL, archived TINYINT(1) DEFAULT NULL, INDEX IDX_23A0E66A29EC0FC (rubric_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE article ADD CONSTRAINT FK_23A0E66A29EC0FC FOREIGN KEY (rubric_id) REFERENCES rubric (id)');
     }
 
     public function down(Schema $schema) : void

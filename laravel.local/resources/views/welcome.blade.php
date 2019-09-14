@@ -107,12 +107,10 @@
                 Последние новости
                 </div>
                     @foreach($articles as $article)
-                     <div>
-                         <h2>{{ $article['rubric'] }}: {{ $article['title'] }}</h2>
-                         <h4> Автор: {{ $article->author['name'] }}</h4>
-                        <h3>{{ $article['subtitle'] }}</h3>
+                     <article>
+                         <h2>{{ $article->rubric['name'] }}: {{ $article['title'] }}</h2>
                          <p>{{$article['content']}}</p>
-                     </div>
+                     </article>
                     @endforeach
 
                 <div><h3>Today is  {{  date('d-m-Y') }}</h3></div>

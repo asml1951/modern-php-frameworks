@@ -17,63 +17,39 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=300)
-     */
-    private $rubric;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=300)
-     */
-    private $subtitle;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updated_at;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $arch;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Author", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Rubric", inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private $rubric;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $modified;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $archived;
 
     /**
      * @ORM\Column(type="text")
      */
     private $content;
 
-
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRubric(): ?string
-    {
-        return $this->rubric;
-    }
-
-    public function setRubric(string $rubric): self
-    {
-        $this->rubric = $rubric;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -88,62 +64,50 @@ class Article
         return $this;
     }
 
-    public function getSubtitle(): ?string
+    public function getRubric(): ?Rubric
     {
-        return $this->subtitle;
+        return $this->rubric;
     }
 
-    public function setSubtitle(string $subtitle): self
+    public function setRubric(?Rubric $rubric): self
     {
-        $this->subtitle = $subtitle;
+        $this->rubric = $rubric;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getPublished(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->published;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setPublished(\DateTimeInterface $published): self
     {
-        $this->created_at = $created_at;
+        $this->published = $published;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getModified(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->modified;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setModified(?\DateTimeInterface $modified): self
     {
-        $this->updated_at = $updated_at;
+        $this->modified = $modified;
 
         return $this;
     }
 
-    public function getArch(): ?bool
+    public function getArchived(): ?bool
     {
-        return $this->arch;
+        return $this->archived;
     }
 
-    public function setArch(bool $arch): self
+    public function setArchived(?bool $archived): self
     {
-        $this->arch = $arch;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?Author
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?Author $author): self
-    {
-        $this->author = $author;
+        $this->archived = $archived;
 
         return $this;
     }
@@ -159,5 +123,4 @@ class Article
 
         return $this;
     }
-
 }

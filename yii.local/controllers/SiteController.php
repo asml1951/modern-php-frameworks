@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\models\Article;
 use app\models\Author;
+use app\models\Rubric;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -63,10 +65,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $articles = Article::find()->where(['<=','id',5])->orderBy('id')->all();
-
-        return $this->render('index', ['articles' => $articles]
-                                            );
+       return $this->render('index', ['articles' => Article::getLatestArticles()]);
     }
 
     /**
