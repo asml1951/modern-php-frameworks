@@ -34,18 +34,18 @@ class UserGroupController extends AbstractController
         $groupId = $request->query->get('gid');
         $validBefore = str_replace("'", "", $request->query->get('validBefore'));
 
-        if(isset($userId, $groupId, $validBefore)) {
+        if (isset($userId, $groupId, $validBefore)) {
             $entityManager = $this->getDoctrine()->getManager();
             $user = $entityManager->getRepository(User::class)
                 ->find($userId);
-            if(!isset($user)){
+            if (!isset($user)){
                 throw $this->createNotFoundException(
                     'No such user uid '.$userId
                 );
             }
             $group = $entityManager->getRepository(Group::class)
                 ->find($groupId);
-            if(!isset($group)){
+            if (!isset($group)) {
                 throw $this->createNotFoundException(
                     'No such group gid '.$groupId
                 );
