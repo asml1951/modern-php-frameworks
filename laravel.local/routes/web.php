@@ -11,13 +11,15 @@
 |
 */
 
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/admin', 'AdminController@index')->middleware('checkadmin');
-
-
 Route::get('/', 'WelcomeController@showLatestNews');
 Route::get('/arch', 'ArchController@moveToArchive');
-
 Route::get('test','TestController@index');
+Route::get('/add-user-to-group', 'UserGroupController@addUserToGroup');
+Route::get('/delete', 'UserGroupController@deleteExpiredUsers');
 
 
 

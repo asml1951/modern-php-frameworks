@@ -37,3 +37,5 @@ services:
 #          - {name: kernel.event_listener, event: kernel.request }
 
 
+    my.quote.strategy:
+        class: App\Service\QuoteStrategy

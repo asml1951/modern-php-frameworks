@@ -48,11 +48,14 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'delete' => 'site/delete',
+                'user-group' => 'site/user-group'
             ],
         ],
 
     ],
     'params' => $params,
+
 ];
 
 if (YII_ENV_DEV) {
